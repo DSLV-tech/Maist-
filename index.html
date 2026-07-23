@@ -1473,16 +1473,16 @@
             width: 100%;
             display: flex;
             align-items: center;
-            gap: 13px;
-            padding: 15px 16px;
-            border-radius: var(--r-md);
+            gap: 11px;
+            padding: 10px 13px;
+            border-radius: var(--r-sm);
             border: 1px solid var(--line);
             background: var(--surface);
             box-shadow: var(--sh-1);
             cursor: pointer;
             text-align: left;
-            margin-bottom: 10px;
-            min-height: 60px;
+            margin-bottom: 7px;
+            min-height: 48px;
         }
 
         .data-btn:active {
@@ -1491,14 +1491,14 @@
 
         .db-ico {
             flex: 0 0 auto;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border-radius: var(--r-sm);
             background: var(--gold-wash);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
+            font-size: 1rem;
         }
 
         .db-body {
@@ -1507,16 +1507,16 @@
         }
 
         .db-title {
-            font-size: 0.92rem;
+            font-size: 0.87rem;
             font-weight: 600;
             color: var(--ink);
         }
 
         .db-desc {
-            font-size: 0.76rem;
+            font-size: 0.71rem;
             color: var(--ink-mute);
-            margin-top: 2px;
-            line-height: 1.4;
+            margin-top: 1px;
+            line-height: 1.3;
         }
 
         .db-arrow {
@@ -3158,7 +3158,124 @@
             z-index: 2;
             white-space: nowrap;
         }
+        /* ---------- SEZIONE ALLERGENI: filtro + scheda stampabile ---------- */
+        .allergy-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+        .af-hint { width: 100%; font-size: .72rem; color: var(--ink-mute); margin-bottom: 2px; }
+        .af-chip { padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink-soft); font-size: .76rem; font-weight: 600; cursor: pointer; min-height: 40px; }
+        .af-chip.on { background: var(--wine); border-color: var(--wine); color: #fff; }
+        .menu-card.allergy-hit { opacity: .38; }
+        .menu-card.allergy-hit::after { content: 'contiene'; position: absolute; top: 10px; right: 12px; font-family: var(--f-mono); font-size: .55rem; color: var(--wine); text-transform: uppercase; letter-spacing: .5px; }
+
+        .print-sheet { display: none; position: fixed; inset: 0; z-index: 150; background: #fff; overflow: auto; -webkit-overflow-scrolling: touch; }
+        .print-sheet.open { display: block; }
+        .as-toolbar { position: sticky; top: 0; display: flex; gap: 8px; padding: calc(var(--safe-top) + 8px) 14px 8px; background: var(--wine); z-index: 2; }
+        .as-toolbar button { height: 42px; border: none; border-radius: 9px; font-size: .82rem; font-weight: 700; cursor: pointer; }
+        .as-print { flex: 1; background: #e8c874; color: #142c54; }
+        .as-close { flex: 0 0 42px; background: rgba(255,255,255,.16); color: #fff; }
+        .as-doc { padding: 20px 20px 60px; max-width: 1100px; margin: 0 auto; color: #16233d; }
+        .as-head { display: flex; align-items: center; gap: 14px; border-bottom: 3px solid var(--wine); padding-bottom: 12px; }
+        .as-head img { height: 40px; }
+        .as-head .t { font-family: var(--f-display); font-weight: 600; font-size: 1.35rem; color: var(--wine); }
+        .as-head .s { font-size: .7rem; color: #566178; font-family: var(--f-mono); margin-top: 2px; }
+        .as-sub { font-size: .78rem; color: #566178; margin: 10px 0 16px; }
+        table.amx { width: 100%; border-collapse: collapse; font-size: .72rem; }
+        table.amx th, table.amx td { border: 1px solid #ccd1db; padding: 5px 4px; text-align: center; }
+        table.amx thead th { background: var(--wine); color: #fff; font-size: .58rem; font-weight: 700; writing-mode: vertical-rl; transform: rotate(180deg); height: 96px; white-space: nowrap; padding: 6px 3px; }
+        table.amx thead th.pz { writing-mode: horizontal-tb; transform: none; text-align: left; vertical-align: bottom; width: 180px; font-size: .68rem; }
+        table.amx tbody td.pz { text-align: left; font-weight: 600; color: #16233d; white-space: nowrap; }
+        table.amx tbody tr:nth-child(even) { background: #f4f6f9; }
+        table.amx .catrow td { background: #eef0f4; font-family: var(--f-display); font-weight: 700; color: var(--wine); text-align: left; font-size: .82rem; }
+        .amx .dot { font-size: .95rem; line-height: 1; }
+        .amx .sure { color: var(--wine); }
+        .amx .maybe { color: #b7892e; }
+        .as-legend { margin-top: 16px; font-size: .72rem; color: #3c4a63; line-height: 1.7; }
+        .as-legend b { color: var(--wine); }
+        .as-legend .k { font-family: var(--f-mono); font-weight: 600; color: var(--wine); white-space: nowrap; }
+        .as-foot { margin-top: 16px; padding-top: 12px; border-top: 1px solid #ccd1db; font-size: .68rem; color: #566178; line-height: 1.5; }
+
+        @media print {
+            .app { height: auto !important; overflow: visible !important; display: block !important; }
+            .app > *:not(.print-sheet) { display: none !important; }
+            .print-sheet.open { display: block !important; position: static !important; overflow: visible !important; }
+            .print-sheet:not(.open) { display: none !important; }
+            .as-toolbar { display: none !important; }
+            .as-doc { padding: 0; max-width: none; }
+            @page { size: A4 landscape; margin: 9mm; }
+            table.amx { font-size: 8.5pt; }
+            table.amx thead th { height: 82px; }
+            body { background: #fff; }
+        }
+        /* ---------- MAGAZZINO / SCORTE ---------- */
+        .stock-alert { display: flex; gap: 11px; padding: 13px 15px; border-radius: 12px; margin-bottom: 12px; font-size: .84rem; line-height: 1.5; }
+        .stock-alert.low { background: #fdeceb; border: 1px solid #f0c4c1; color: #7a1512; }
+        .stock-alert.exp { background: var(--gold-wash); border: 1px solid var(--gold-soft); color: #5a3d00; }
+        .stock-alert b { display: block; }
+        .prod-card { padding: 14px 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 13px; cursor: pointer; border-left: 4px solid var(--line-strong); }
+        .prod-card.ok { border-left-color: #2e7d33; }
+        .prod-card.low { border-left-color: #d9a441; }
+        .prod-card.out { border-left-color: var(--wine); }
+        .prod-main { flex: 1; min-width: 0; }
+        .prod-name { font-weight: 600; font-size: 1rem; }
+        .prod-meta { font-size: .76rem; color: var(--ink-mute); margin-top: 2px; }
+        .prod-qty { text-align: right; white-space: nowrap; }
+        .prod-qty .q { font-family: var(--f-mono); font-size: 1.25rem; font-weight: 700; color: var(--ink); line-height: 1; }
+        .prod-qty .u { font-size: .7rem; color: var(--ink-mute); }
+        .prod-card.out .prod-qty .q { color: var(--wine); }
+        .qrow { display: flex; gap: 8px; margin-bottom: 8px; }
+        .qbtn { flex: 1; height: 52px; border-radius: 12px; border: 1.5px solid var(--line-strong); background: var(--surface); font-size: 1.05rem; font-weight: 700; cursor: pointer; }
+        .qbtn.plus { background: var(--olive); color: #fff; border-color: var(--olive); }
+        .qbtn.minus { color: var(--wine); }
+        .qbtn:active { transform: scale(.96); }
+        .lot-row { display: flex; gap: 11px; align-items: center; padding: 11px 0; border-bottom: 1px dashed var(--line); }
+        .lot-row:last-child { border-bottom: none; }
+        .lot-thumb { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; background: var(--surface-sunk); border: 1px solid var(--line); flex: 0 0 auto; cursor: pointer; }
+        .lot-thumb.empty { display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--ink-mute); }
+        .lot-info { flex: 1; min-width: 0; font-size: .82rem; }
+        .lot-info .lm { color: var(--ink-mute); font-size: .72rem; font-family: var(--f-mono); margin-top: 2px; }
+        .lot-info .lm.soon { color: var(--wine); font-weight: 700; }
+        .lot-type { font-family: var(--f-mono); font-size: .62rem; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; }
+        .lot-type.carico { background: #dcecdd; color: #10420f; }
+        .lot-type.scarico { background: var(--surface-sunk); color: var(--ink-mute); }
+        .photo-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 62px; border: 2px dashed var(--line-strong); border-radius: 12px; background: var(--surface-warm); color: var(--ink-soft); font-weight: 600; font-size: .9rem; cursor: pointer; }
+        .photo-btn:active { transform: scale(.98); }
+        .photo-preview { width: 100%; max-height: 200px; object-fit: contain; border-radius: 12px; margin-top: 10px; display: none; }
+        .photo-viewer { position: fixed; inset: 0; z-index: 190; background: rgba(0,0,0,.92); display: none; align-items: center; justify-content: center; padding: 16px; }
+        .photo-viewer.open { display: flex; }
+        .photo-viewer img { max-width: 100%; max-height: 100%; border-radius: 10px; }
+        .tab-dot { }
+        /* ---------- REGISTRO HACCP FIRMABILE ---------- */
+        #hs-period { display: flex; gap: 5px; width: 100%; margin-bottom: 6px; }
+        #hs-period button { flex: 1; height: 34px; border: none; border-radius: 7px; background: rgba(255,255,255,.16); color: #fff; font-size: .74rem; font-weight: 700; cursor: pointer; }
+        #hs-period button.active { background: #e8c874; color: #142c54; }
+        table.hreg { width: 100%; border-collapse: collapse; font-size: .72rem; margin: 6px 0 4px; }
+        table.hreg th, table.hreg td { border: 1px solid #ccd1db; padding: 5px 7px; text-align: center; }
+        table.hreg th { background: var(--wine); color: #fff; font-size: .6rem; font-weight: 700; }
+        table.hreg td.l { text-align: left; }
+        table.hreg .bad { color: var(--wine); }
+        table.hreg .muted { color: #8a93a5; }
+        .hs-day { margin-top: 16px; }
+        .hs-date { font-family: var(--f-display); font-weight: 700; color: var(--wine); font-size: .92rem; border-bottom: 2px solid var(--gold-soft); padding-bottom: 4px; margin-bottom: 6px; }
+        .hs-clean { font-size: .76rem; color: #3c4a63; margin-top: 4px; }
+        .hs-empty, .hs-nc { margin-top: 14px; }
+        .hs-sign { display: flex; gap: 24px; margin-top: 26px; flex-wrap: wrap; }
+        .hs-sign-col { flex: 1; min-width: 220px; }
+        .hs-lbl { font-family: var(--f-mono); font-size: .62rem; text-transform: uppercase; letter-spacing: 1px; color: #566178; }
+        .hs-val { font-size: .95rem; font-weight: 600; color: #16233d; margin-top: 3px; }
+        .hs-name { width: 100%; border: none; border-bottom: 1.5px solid #16233d; font-size: .95rem; padding: 6px 2px; color: #16233d; background: none; }
+        #sign-canvas { width: 100%; height: 130px; border: 1px dashed var(--line-strong); border-radius: 8px; background: #fff; touch-action: none; margin-top: 4px; display: block; }
+        .hs-clear { margin-top: 6px; background: none; border: none; color: var(--wine); font-size: .72rem; text-decoration: underline; cursor: pointer; }
+        .hs-penline { border-bottom: 1.5px solid #16233d; height: 70px; }
+        @media print {
+            .hs-clear { display: none !important; }
+            #hs-period { display: none !important; }
+            #sign-canvas { border: 1px solid #999 !important; height: 120px; }
+        }
+        .back-link { background: none; border: none; color: var(--wine); font-weight: 600; font-size: .82rem; padding: 14px 0 2px; cursor: pointer; min-height: 40px; }
+        .back-link:active { opacity: .6; }
     </style>
+
+
+
 </head>
 
 <body>
@@ -3201,6 +3318,11 @@
                     <strong>Staff:</strong> usa l'interruttore per attivare o spegnere una pizza. Le pizze spente
                     spariscono dalle comande ma restano qui.
                 </div>
+
+                <details class="collapse" style="margin-bottom:14px">
+                    <summary>🔎 Filtra per allergia</summary>
+                    <div class="allergy-filter" id="allergy-filter" style="margin-top:10px"></div>
+                </details>
 
                 <div id="menu-list"></div>
 
@@ -3525,13 +3647,13 @@
                 <div class="card panel" id="clean-list"></div>
 
                 <div class="sec-head">
-                    <h2 class="sec-title">Registro</h2>
+                    <h2 class="sec-title">Registro e non conformità</h2>
                 </div>
-                <button class="data-btn" onclick="shareHaccpReport()">
-                    <span class="db-ico">📤</span>
+                <button class="data-btn" onclick="openHaccpSheet()">
+                    <span class="db-ico">🖊️</span>
                     <span class="db-body">
-                        <span class="db-title">Esporta registro HACCP</span>
-                        <span class="db-desc">Temperature, sanificazioni e non conformità</span>
+                        <span class="db-title">Registro firmabile (PDF)</span>
+                        <span class="db-desc">Firma a dito o a penna · Stampa → Salva PDF</span>
                     </span>
                     <span class="db-arrow">›</span>
                 </button>
@@ -3553,6 +3675,7 @@
 
             <!-- ==================== FOOD COST ==================== -->
             <section class="view-panel" id="view-cost">
+                <button class="back-link" onclick="switchView('gestione')">‹ Gestione</button>
                 <div class="screen-head">
                     <h1 class="screen-title">Food cost</h1>
                     <div class="screen-sub">costi modificabili</div>
@@ -3603,7 +3726,65 @@
                 <div class="app-footer">Maistà · Gestionale v1.0 · uso interno</div>
             </section>
 
+            <!-- ==================== MAGAZZINO ==================== -->
+            <section class="view-panel" id="view-stock">
+                <button class="back-link" onclick="switchView('gestione')">‹ Gestione</button>
+                <div class="screen-head">
+                    <h1 class="screen-title">Magazzino</h1>
+                    <div class="screen-sub" id="stock-sub">—</div>
+                </div>
+                <div class="rule"></div>
+
+                <div id="stock-alerts"></div>
+
+                <button class="btn-wide" style="margin-bottom:16px" onclick="openProductEditor(null)">＋ Aggiungi prodotto</button>
+
+                <div id="stock-list"></div>
+
+                <div class="note" style="margin-top:16px">
+                    <strong>Tracciabilità:</strong> a ogni carico puoi allegare la <strong>foto dell'etichetta</strong>,
+                    con lotto e scadenza. Le foto restano sul telefono. Il testo (prodotti e movimenti) è incluso nel backup.
+                </div>
+            </section>
+
+            <!-- ==================== GESTIONE (hub) ==================== -->
+            <section class="view-panel" id="view-gestione">
+                <div class="screen-head">
+                    <h1 class="screen-title">Gestione</h1>
+                    <div class="screen-sub">Strumenti, stampe e archivio</div>
+                </div>
+                <div class="rule"></div>
+
+                <button class="data-btn" onclick="switchView('cost')"><span class="db-ico">📊</span><span class="db-body"><span class="db-title">Food cost</span><span class="db-desc">Costo, margine e food cost % per pizza</span></span><span class="db-arrow">›</span></button>
+                <button class="data-btn" onclick="switchView('stock')"><span class="db-ico">📦</span><span class="db-body"><span class="db-title">Magazzino</span><span class="db-desc">Scorte, scadenze e foto etichette</span></span><span class="db-arrow">›</span></button>
+                <button class="data-btn" onclick="openAllergenSheet()"><span class="db-ico">📄</span><span class="db-body"><span class="db-title">Scheda allergeni</span><span class="db-desc">Matrice stampabile / PDF</span></span><span class="db-arrow">›</span></button>
+                <button class="data-btn" onclick="shareHaccpReport()"><span class="db-ico">📤</span><span class="db-body"><span class="db-title">Esporta registro (testo)</span><span class="db-desc">Riepilogo HACCP condivisibile</span></span><span class="db-arrow">›</span></button>
+                <button class="data-btn" onclick="openDataSheet()"><span class="db-ico">💾</span><span class="db-body"><span class="db-title">Dati e backup</span><span class="db-desc">Salva, ripristina, report giornata</span></span><span class="db-arrow">›</span></button>
+            </section>
+
         </main>
+
+        <div id="allergen-sheet" class="print-sheet" role="dialog" aria-label="Scheda allergeni stampabile">
+            <div class="as-toolbar">
+                <button class="as-print" onclick="printAllergenSheet()">🖨 Stampa / Salva PDF</button>
+                <button class="as-close" onclick="closeAllergenSheet()" aria-label="Chiudi">✕</button>
+            </div>
+            <div class="as-doc" id="as-doc"></div>
+        </div>
+
+        <div id="haccp-sheet" class="print-sheet" role="dialog" aria-label="Registro HACCP firmabile">
+            <div class="as-toolbar" style="flex-wrap:wrap">
+                <div id="hs-period">
+                    <button data-d="1" onclick="setHaccpPeriod(1)">Oggi</button>
+                    <button data-d="7" class="active" onclick="setHaccpPeriod(7)">7 gg</button>
+                    <button data-d="14" onclick="setHaccpPeriod(14)">14 gg</button>
+                    <button data-d="30" onclick="setHaccpPeriod(30)">30 gg</button>
+                </div>
+                <button class="as-print" onclick="printHaccpSheet()">🖨 Stampa / Salva PDF</button>
+                <button class="as-close" onclick="closeHaccpSheet()" aria-label="Chiudi">✕</button>
+            </div>
+            <div class="as-doc" id="hs-doc"></div>
+        </div>
 
         <nav class="tabbar">
             <button class="tab active" data-view="menu" onclick="switchView('menu')">
@@ -3618,8 +3799,8 @@
             <button class="tab" data-view="haccp" onclick="switchView('haccp')">
                 <span class="t-ico">🧊</span>HACCP<span class="tab-dot" id="haccp-dot"></span>
             </button>
-            <button class="tab" data-view="cost" onclick="switchView('cost')">
-                <span class="t-ico">📊</span>Costi
+            <button class="tab" data-view="gestione" onclick="switchView('gestione')">
+                <span class="t-ico">⚙️</span>Gestione<span class="tab-dot" id="stock-dot"></span>
             </button>
         </nav>
 
@@ -4076,6 +4257,7 @@
             const rolled = normalizeArchive();
             buildMenu();
             buildLegend();
+            buildAllergyFilter();
             buildCatFilter();
             buildTiles();
             renderOrderBar();
@@ -4085,6 +4267,7 @@
             buildIngredientList();
             renderFoodCost();
             renderHaccp();
+            renderStock();
 
             // Chiede al telefono di non cancellare l'archivio per fare spazio
             requestPersistence();
@@ -4133,13 +4316,16 @@
 
         function switchView(view) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.tab[data-view="${view}"]`).classList.add('active');
+            const parentView = (view === 'cost' || view === 'stock') ? 'gestione' : view;
+            const tabBtn = document.querySelector(`.tab[data-view="${parentView}"]`);
+            if (tabBtn) tabBtn.classList.add('active');
             document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('visible'));
             $(`view-${view}`).classList.add('visible');
             // La plancia comande non scorre: blocca lo scroll del contenitore
             $('main').classList.toggle('locked', view === 'calc');
             if (view === 'cost') renderFoodCost();
             if (view === 'haccp') renderHaccp();
+            if (view === 'stock') renderStock();
             closeSheet();
             buzz(8);
             $('main').scrollTop = 0;
@@ -4192,6 +4378,7 @@
                 list.appendChild(card);
             });
             $('menu-count').textContent = `${on} di ${PIZZE.length} attive`;
+            applyAllergyFilter();
         }
 
         function toggleAvailability(id) {
@@ -4781,6 +4968,8 @@
                 presets: loadPresets(),
                 haccp: state.haccp,
                 equip: loadEquip(),
+                stock: loadStock(),
+                moves: loadMoves(),
                 dough, water, phases
             };
         }
@@ -4841,6 +5030,7 @@
                     state.equip = data.equip;
                     saveEquip();
                 }
+                if (Array.isArray(data.stock)) { state.stock = data.stock; state.moves = data.moves || []; saveStock(); }
                 if (data.presets) storePresets(data.presets);
                 if (data.dough) {
                     DOUGH_FIELDS.forEach(f => { if (data.dough[f] != null && $(f)) $(f).value = data.dough[f]; });
@@ -4859,7 +5049,7 @@
                 buildMenu(); buildTiles(); renderOrderBar();
                 buildPhaseEditor(); renderPresets(); buildIngredientList();
                 syncMaturazioneButtons();
-                updateDough(); updateWater(); renderTimeline(); renderFoodCost(); renderHaccp();
+                updateDough(); updateWater(); renderTimeline(); renderFoodCost(); renderHaccp(); renderStock();
                 closeSheet();
                 toast('Backup ripristinato');
             };
@@ -6060,7 +6250,428 @@
             }, reduce ? 350 : 1300);
         })();
 
+        /* ============================================================
+           ALLERGENI — lista completa Allegato II Reg. UE 1169/2011
+           e scheda matrice stampabile.
+           ============================================================ */
+        const ALLERGENS_FULL = [
+            { code: 'GLU', key: 'glutine', name: 'Glutine' },
+            { code: 'CRO', key: 'crostacei', name: 'Crostacei' },
+            { code: 'UOV', key: 'uova', name: 'Uova' },
+            { code: 'PES', key: 'pesce', name: 'Pesce' },
+            { code: 'ARA', key: 'arachidi', name: 'Arachidi' },
+            { code: 'SOI', key: 'soia', name: 'Soia' },
+            { code: 'LAT', key: 'latte', name: 'Latte' },
+            { code: 'FRU', key: 'frutta_guscio', name: 'Frutta a guscio' },
+            { code: 'SED', key: 'sedano', name: 'Sedano' },
+            { code: 'SEN', key: 'senape', name: 'Senape' },
+            { code: 'SES', key: 'sesamo', name: 'Sesamo' },
+            { code: 'SOL', key: 'solfiti', name: 'Solfiti' },
+            { code: 'LUP', key: 'lupini', name: 'Lupini' },
+            { code: 'MOL', key: 'molluschi', name: 'Molluschi' }
+        ];
+
+        /* Filtro allergie nel menu: nasconde le pizze che contengono l'allergene */
+        function buildAllergyFilter() {
+            const el = $('allergy-filter');
+            if (!el) return;
+            const present = new Set();
+            PIZZE.forEach(p => { const a = pizzaAllergens(p); a.sure.forEach(x => present.add(x)); a.maybe.forEach(x => present.add(x)); });
+            const items = ALLERGENS_FULL.filter(a => present.has(a.key));
+            el.innerHTML = '<span class="af-hint">Filtra per allergia — nascondi le pizze che contengono:</span>' +
+                items.map(a => `<button class="af-chip ${state.allergy && state.allergy.has(a.key) ? 'on' : ''}" onclick="toggleAllergy('${a.key}')">${a.name}</button>`).join('');
+        }
+        function toggleAllergy(k) {
+            if (!state.allergy) state.allergy = new Set();
+            state.allergy.has(k) ? state.allergy.delete(k) : state.allergy.add(k);
+            buzz(8);
+            buildAllergyFilter();
+            applyAllergyFilter();
+        }
+        function applyAllergyFilter() {
+            const cards = [...document.querySelectorAll('#menu-list .menu-card')];
+            cards.forEach((card, i) => {
+                const p = PIZZE[i]; if (!p) return;
+                const a = pizzaAllergens(p);
+                const hit = state.allergy && [...state.allergy].some(k => a.sure.includes(k) || a.maybe.includes(k));
+                card.classList.toggle('allergy-hit', !!hit);
+            });
+        }
+
+        /* Scheda allergeni stampabile */
+        function openAllergenSheet() { buildAllergenSheet(); $('allergen-sheet').classList.add('open'); }
+        function closeAllergenSheet() { $('allergen-sheet').classList.remove('open'); }
+        function printAllergenSheet() { window.print(); }
+
+        function buildAllergenSheet() {
+            const logo = document.querySelector('.brand-logo');
+            const logoTag = logo ? `<img src="${logo.src}" alt="Maistà">` : '';
+            const today = new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+            const head = `<div class="as-head">${logoTag}<div><div class="t">Scheda Allergeni</div><div class="s">Reg. UE 1169/2011 · Allegato II</div></div></div>
+                <div class="as-sub">Aggiornata al ${today} · Maistà — Pizza &amp; Cucina, Bergamo</div>`;
+            const thead = '<tr><th class="pz">Pizza</th>' + ALLERGENS_FULL.map(a => `<th title="${a.name}">${a.name}</th>`).join('') + '</tr>';
+            let rows = '';
+            Object.keys(CATS).forEach(cat => {
+                rows += `<tr class="catrow"><td colspan="${ALLERGENS_FULL.length + 1}">${CATS[cat]}</td></tr>`;
+                PIZZE.filter(p => p.cat === cat).forEach(p => {
+                    const a = pizzaAllergens(p);
+                    rows += `<tr><td class="pz">${p.name}</td>` + ALLERGENS_FULL.map(al => {
+                        if (a.sure.includes(al.key)) return '<td><span class="dot sure">●</span></td>';
+                        if (a.maybe.includes(al.key)) return '<td><span class="dot maybe">○</span></td>';
+                        return '<td></td>';
+                    }).join('') + '</tr>';
+                });
+            });
+            const legend = ALLERGENS_FULL.map(a => `<span class="k">${a.name}</span>`).join(' · ');
+            $('as-doc').innerHTML = head +
+                `<table class="amx"><thead>${thead}</thead><tbody>${rows}</tbody></table>` +
+                `<div class="as-legend"><b>Legenda:</b> <span class="sure" style="font-size:.95rem">●</span> presente · <span class="maybe" style="font-size:.95rem">○</span> possibile / da verificare in etichetta del fornitore · colonna vuota = assente.<br><b>Allergeni (Allegato II):</b> ${legend}.</div>` +
+                `<div class="as-foot">Le informazioni derivano dagli ingredienti dichiarati dei singoli prodotti. Impasto e ambiente di lavoro possono comportare contaminazioni crociate: per allergie o intolleranze gravi rivolgersi sempre al personale di sala. Questo documento non sostituisce il piano di autocontrollo HACCP dell'attività.</div>`;
+        }
+
+        /* ============================================================
+           MAGAZZINO / SCORTE + TRACCIABILITÀ FOTO ETICHETTE
+           Prodotti con quantità, soglia minima, unità, fornitore.
+           Movimenti (carico/scarico); ogni carico può portare lotto,
+           scadenza e FOTO dell'etichetta (in IndexedDB).
+           ============================================================ */
+        const STOCK_UNITS = ['kg', 'g', 'pz', 'L'];
+        const STOCK_CATS = ['Latticini', 'Salumi', 'Pomodori', 'Farine', 'Verdure', 'Bevande', 'Altro'];
+
+        /* --- IndexedDB per le foto (troppo grandi per localStorage) --- */
+        const PhotoDB = (function () {
+            let dbp = null;
+            function open() {
+                if (!window.indexedDB) return Promise.reject('no-idb');
+                if (dbp) return dbp;
+                dbp = new Promise((res, rej) => {
+                    const r = indexedDB.open('maista_db', 1);
+                    r.onupgradeneeded = e => { if (!e.target.result.objectStoreNames.contains('photos')) e.target.result.createObjectStore('photos'); };
+                    r.onsuccess = e => res(e.target.result);
+                    r.onerror = e => rej(e);
+                });
+                return dbp;
+            }
+            return {
+                put: (id, data) => open().then(db => new Promise((res, rej) => { const tx = db.transaction('photos', 'readwrite'); tx.objectStore('photos').put(data, id); tx.oncomplete = res; tx.onerror = rej; })).catch(() => { }),
+                get: (id) => open().then(db => new Promise((res) => { const tx = db.transaction('photos', 'readonly'); const rq = tx.objectStore('photos').get(id); rq.onsuccess = () => res(rq.result || null); rq.onerror = () => res(null); })).catch(() => null),
+                del: (id) => open().then(db => new Promise((res) => { const tx = db.transaction('photos', 'readwrite'); tx.objectStore('photos').delete(id); tx.oncomplete = res; tx.onerror = res; })).catch(() => { })
+            };
+        })();
+
+        function compressImage(file, maxDim, quality) {
+            return new Promise((res) => {
+                try {
+                    const img = new Image(); const url = URL.createObjectURL(file);
+                    img.onload = () => {
+                        let w = img.width, h = img.height; const s = Math.min(1, maxDim / Math.max(w, h));
+                        const cw = Math.round(w * s), ch = Math.round(h * s);
+                        const c = document.createElement('canvas'); c.width = cw; c.height = ch;
+                        c.getContext('2d').drawImage(img, 0, 0, cw, ch);
+                        URL.revokeObjectURL(url);
+                        res(c.toDataURL('image/jpeg', quality || 0.7));
+                    };
+                    img.onerror = () => res(null);
+                    img.src = url;
+                } catch (e) { res(null); }
+            });
+        }
+
+        /* --- stato & persistenza --- */
+        function loadStock() { if (!state.stock) { try { state.stock = JSON.parse(localStorage.getItem('maista_stock') || '[]'); } catch (e) { state.stock = []; } } return state.stock; }
+        function loadMoves() { if (!state.moves) { try { state.moves = JSON.parse(localStorage.getItem('maista_moves') || '[]'); } catch (e) { state.moves = []; } } return state.moves; }
+        function saveStock() { try { localStorage.setItem('maista_stock', JSON.stringify(state.stock || [])); localStorage.setItem('maista_moves', JSON.stringify(state.moves || [])); } catch (e) { } }
+        const findProd = id => loadStock().find(p => p.id === id);
+        const prodMoves = id => loadMoves().filter(m => m.prodId === id).sort((a, b) => b.ts - a.ts);
+        const daysTo = iso => { if (!iso) return null; const d = new Date(iso + 'T00:00:00'); return Math.round((d - new Date().setHours(0, 0, 0, 0)) / 86400000); };
+
+        function prodStatus(p) {
+            if (p.qty <= 0) return 'out';
+            if (p.min > 0 && p.qty <= p.min) return 'low';
+            return 'ok';
+        }
+
+        function renderStock() {
+            const list = loadStock();
+            const el = $('stock-list');
+            // avvisi
+            const low = list.filter(p => prodStatus(p) !== 'ok');
+            const expiring = loadMoves().filter(m => m.type === 'carico' && m.expiry && daysTo(m.expiry) !== null && daysTo(m.expiry) <= 14)
+                .sort((a, b) => daysTo(a.expiry) - daysTo(b.expiry));
+            let al = '';
+            if (low.length) al += `<div class="stock-alert low"><span>⚠️</span><span><b>${low.length} prodott${low.length > 1 ? 'i' : 'o'} sotto scorta</b>${low.map(p => p.name).join(', ')}</span></div>`;
+            if (expiring.length) al += `<div class="stock-alert exp"><span>📅</span><span><b>${expiring.length} lott${expiring.length > 1 ? 'i' : 'o'} in scadenza (≤14 gg)</b>${expiring.slice(0, 6).map(m => { const pr = findProd(m.prodId); const dd = daysTo(m.expiry); return `${pr ? pr.name : '?'} ${dd < 0 ? 'SCADUTO' : 'tra ' + dd + ' gg'}`; }).join(' · ')}</span></div>`;
+            $('stock-alerts').innerHTML = al;
+
+            if (!list.length) { el.innerHTML = '<div class="empty-state">Magazzino vuoto. Aggiungi il primo prodotto col pulsante qui sopra.</div>'; }
+            else {
+                el.innerHTML = list.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p => {
+                    const st = prodStatus(p);
+                    return `<article class="card prod-card ${st}" onclick="openProductSheet('${p.id}')">
+                        <div class="prod-main">
+                            <div class="prod-name">${p.name}</div>
+                            <div class="prod-meta">${p.cat || 'Altro'}${p.supplier ? ' · ' + p.supplier : ''}${p.min > 0 ? ' · min ' + p.min + ' ' + p.unit : ''}</div>
+                        </div>
+                        <div class="prod-qty"><span class="q">${(+p.qty).toLocaleString('it-IT')}</span> <span class="u">${p.unit}</span></div>
+                    </article>`;
+                }).join('');
+            }
+            $('stock-sub').textContent = `${list.length} prodotti · ${low.length} sotto scorta · ${expiring.length} in scadenza`;
+            const dot = $('stock-dot'); if (dot) dot.classList.toggle('on', low.length > 0 || expiring.length > 0);
+        }
+
+        /* --- editor prodotto --- */
+        function openProductEditor(id) {
+            const isNew = !id; const p = (id && findProd(id)) || { name: '', cat: 'Altro', unit: 'kg', qty: 0, min: 0, supplier: '', note: '' };
+            state._puUnit = p.unit; state._puCat = p.cat;
+            $('sheet-body').innerHTML = `
+                <div class="field"><label for="pu-name">Nome prodotto</label><input class="input" id="pu-name" value="${escAttr(p.name)}" placeholder="es. Fior di Latte"></div>
+                <div class="field"><label>Categoria</label>
+                    <div class="segmented" id="pu-cat" style="flex-wrap:wrap">${STOCK_CATS.map(c => `<button type="button" data-c="${c}" class="${p.cat === c ? 'active' : ''}" onclick="puCat('${c}')" style="flex:1 0 28%">${c}</button>`).join('')}</div></div>
+                <div class="grid-2">
+                    <div class="field"><label for="pu-qty">Quantità attuale</label><input type="number" class="input" id="pu-qty" step="0.1" value="${p.qty}" inputmode="decimal"></div>
+                    <div class="field"><label>Unità</label><div class="segmented" id="pu-unit">${STOCK_UNITS.map(u => `<button type="button" data-u="${u}" class="${p.unit === u ? 'active' : ''}" onclick="puUnit('${u}')">${u}</button>`).join('')}</div></div>
+                    <div class="field"><label for="pu-min">Soglia minima</label><input type="number" class="input" id="pu-min" step="0.1" value="${p.min}" inputmode="decimal"></div>
+                    <div class="field"><label for="pu-sup">Fornitore</label><input class="input" id="pu-sup" value="${escAttr(p.supplier)}" placeholder="es. Latteria Sorrentina"></div>
+                </div>`;
+            let foot = `<button class="btn-wide" onclick="saveProduct('${id || ''}')">Salva prodotto</button>`;
+            if (!isNew) foot += `<div style="height:8px"></div><button class="btn-ghost" style="color:var(--wine)" onclick="deleteProduct('${id}')">Elimina prodotto</button>`;
+            $('sheet-foot').innerHTML = foot;
+            openSheet('prodedit', isNew ? 'Nuovo prodotto' : 'Modifica prodotto');
+        }
+        function puUnit(u) { state._puUnit = u; document.querySelectorAll('#pu-unit button').forEach(b => b.classList.toggle('active', b.dataset.u === u)); }
+        function puCat(c) { state._puCat = c; document.querySelectorAll('#pu-cat button').forEach(b => b.classList.toggle('active', b.dataset.c === c)); }
+        function saveProduct(id) {
+            const name = $('pu-name').value.trim(); if (!name) { toast('Dai un nome al prodotto'); return; }
+            const obj = { name, cat: state._puCat, unit: state._puUnit, qty: parseFloat($('pu-qty').value) || 0, min: parseFloat($('pu-min').value) || 0, supplier: $('pu-sup').value.trim(), updatedAt: Date.now() };
+            loadStock();
+            if (!id) { obj.id = 'pr' + Date.now(); obj.note = ''; state.stock.push(obj); }
+            else { Object.assign(findProd(id), obj); }
+            saveStock(); buzz(12); closeSheet(); renderStock(); toast('Prodotto salvato');
+        }
+        function deleteProduct(id) {
+            if (!confirm('Eliminare il prodotto e i suoi movimenti?\nLe foto etichetta collegate verranno rimosse.')) return;
+            prodMoves(id).forEach(m => { if (m.photoId) PhotoDB.del(m.photoId); });
+            state.stock = loadStock().filter(p => p.id !== id);
+            state.moves = loadMoves().filter(m => m.prodId !== id);
+            saveStock(); closeSheet(); renderStock(); toast('Prodotto eliminato');
+        }
+
+        /* --- scheda prodotto: quantità, carico con etichetta, movimenti --- */
+        function openProductSheet(id) {
+            const p = findProd(id); if (!p) return;
+            const moves = prodMoves(id);
+            state._caricoPhoto = null;
+            const movesHtml = moves.length ? moves.map(m => {
+                const dd = m.expiry ? daysTo(m.expiry) : null;
+                const soon = dd !== null && dd <= 14;
+                return `<div class="lot-row">
+                    ${m.type === 'carico'
+                        ? (m.photoId ? `<img class="lot-thumb" data-photo="${m.photoId}" onclick="viewPhoto('${m.photoId}')" alt="etichetta">` : '<span class="lot-thumb empty">📷</span>')
+                        : '<span class="lot-thumb empty">−</span>'}
+                    <div class="lot-info">
+                        <span class="lot-type ${m.type}">${m.type}</span> ${m.qty} ${p.unit}${m.lot ? ' · lotto ' + m.lot : ''}${m.supplier ? ' · ' + m.supplier : ''}
+                        <div class="lm ${soon ? 'soon' : ''}">${new Date(m.ts).toLocaleDateString('it-IT')}${m.expiry ? ' · scad. ' + new Date(m.expiry + 'T00:00:00').toLocaleDateString('it-IT') + (dd < 0 ? ' (SCADUTO)' : dd <= 14 ? ' (tra ' + dd + ' gg)' : '') : ''}</div>
+                    </div>
+                    <button class="link-btn" style="min-height:36px;padding:6px" onclick="deleteMove('${m.id}','${id}')">✕</button>
+                </div>`;
+            }).join('') : '<div class="empty-state">Nessun movimento registrato.</div>';
+
+            $('sheet-body').innerHTML = `
+                <div class="day-summary" style="margin-bottom:14px">
+                    <div><div class="lbl">Giacenza</div><div class="sub">${p.cat}${p.supplier ? ' · ' + p.supplier : ''}</div></div>
+                    <div class="val">${(+p.qty).toLocaleString('it-IT')} <span style="font-size:.9rem">${p.unit}</span></div>
+                </div>
+                <div class="qrow">
+                    <button class="qbtn minus" onclick="quickMove('${id}','scarico')">− Scarico</button>
+                    <button class="qbtn plus" onclick="openCarico('${id}')">＋ Carico</button>
+                </div>
+                <div id="carico-form"></div>
+                <div class="block-label" style="margin-top:18px">Movimenti e lotti</div>
+                ${movesHtml}`;
+            $('sheet-foot').innerHTML = `<button class="btn-ghost" onclick="openProductEditor('${id}')">✎ Modifica prodotto</button>`;
+            openSheet('prod', p.name);
+            hydratePhotos();
+        }
+
+        function hydratePhotos() {
+            document.querySelectorAll('.lot-thumb[data-photo]').forEach(async img => {
+                if (img._done) return; img._done = true;
+                const data = await PhotoDB.get(img.getAttribute('data-photo'));
+                if (data) img.src = data; else { img.outerHTML = '<span class="lot-thumb empty">📷</span>'; }
+            });
+        }
+
+        function quickMove(id, type) {
+            const p = findProd(id); if (!p) return;
+            const v = prompt(`${type === 'scarico' ? 'Scarico' : 'Carico'} — quantità in ${p.unit}:`);
+            const q = parseFloat((v || '').replace(',', '.'));
+            if (isNaN(q) || q <= 0) return;
+            addMove({ prodId: id, type, qty: q });
+            openProductSheet(id);
+        }
+
+        function openCarico(id) {
+            const p = findProd(id); if (!p) return;
+            state._caricoPhoto = null;
+            $('carico-form').innerHTML = `
+                <div class="card panel" style="margin-top:10px">
+                    <div class="block-label">Nuovo carico</div>
+                    <div class="grid-2">
+                        <div class="field"><label for="ca-qty">Quantità (${p.unit})</label><input type="number" class="input" id="ca-qty" step="0.1" inputmode="decimal"></div>
+                        <div class="field"><label for="ca-lot">Lotto</label><input class="input" id="ca-lot" placeholder="n° lotto"></div>
+                        <div class="field"><label for="ca-exp">Scadenza</label><input type="date" class="input" id="ca-exp"></div>
+                        <div class="field"><label for="ca-sup">Fornitore</label><input class="input" id="ca-sup" value="${escAttr(p.supplier || '')}"></div>
+                    </div>
+                    <input type="file" id="ca-photo" accept="image/*" capture="environment" style="display:none" onchange="capturePhoto(event)">
+                    <div class="photo-btn" onclick="document.getElementById('ca-photo').click()">📷 Fotografa l'etichetta</div>
+                    <img class="photo-preview" id="ca-preview" alt="anteprima etichetta">
+                    <button class="btn-wide" style="margin-top:12px" onclick="saveCarico('${id}')">Registra carico</button>
+                </div>`;
+            $('ca-qty') && $('ca-qty').focus();
+        }
+
+        async function capturePhoto(ev) {
+            const file = ev.target.files && ev.target.files[0]; if (!file) return;
+            toast('Elaboro la foto…', 1500);
+            const data = await compressImage(file, 1024, 0.7);
+            if (!data) { toast('Foto non valida'); return; }
+            state._caricoPhoto = data;
+            const pv = $('ca-preview'); if (pv) { pv.src = data; pv.style.display = 'block'; }
+            ev.target.value = '';
+        }
+
+        async function saveCarico(id) {
+            const p = findProd(id); if (!p) return;
+            const q = parseFloat(($('ca-qty').value || '').replace(',', '.'));
+            if (isNaN(q) || q <= 0) { toast('Inserisci la quantità'); return; }
+            let photoId = null;
+            if (state._caricoPhoto) { photoId = 'ph' + Date.now(); await PhotoDB.put(photoId, state._caricoPhoto); }
+            addMove({ prodId: id, type: 'carico', qty: q, lot: $('ca-lot').value.trim(), expiry: $('ca-exp').value || '', supplier: $('ca-sup').value.trim(), photoId });
+            state._caricoPhoto = null;
+            openProductSheet(id);
+            toast('Carico registrato');
+        }
+
+        function addMove(m) {
+            loadMoves(); loadStock();
+            m.id = 'mv' + Date.now() + Math.floor(Math.random() * 99);
+            m.ts = Date.now();
+            state.moves.push(m);
+            const p = findProd(m.prodId);
+            if (p) { p.qty = Math.max(0, (+p.qty) + (m.type === 'scarico' ? -m.qty : m.qty)); p.updatedAt = Date.now(); }
+            buzz(12); saveStock(); renderStock();
+        }
+
+        function deleteMove(mid, prodId) {
+            const m = loadMoves().find(x => x.id === mid); if (!m) return;
+            if (!confirm('Eliminare questo movimento? La giacenza verrà ricalcolata.')) return;
+            const p = findProd(prodId);
+            if (p) p.qty = Math.max(0, (+p.qty) - (m.type === 'scarico' ? -m.qty : m.qty));
+            if (m.photoId) PhotoDB.del(m.photoId);
+            state.moves = loadMoves().filter(x => x.id !== mid);
+            saveStock(); openProductSheet(prodId);
+        }
+
+        function viewPhoto(photoId) {
+            PhotoDB.get(photoId).then(data => {
+                if (!data) { toast('Foto non disponibile'); return; }
+                let v = $('photo-viewer');
+                if (!v) { v = document.createElement('div'); v.id = 'photo-viewer'; v.className = 'photo-viewer'; v.onclick = () => v.classList.remove('open'); document.body.appendChild(v); }
+                v.innerHTML = `<img src="${data}" alt="etichetta">`;
+                v.classList.add('open');
+            });
+        }
+
+        /* ============================================================
+           REGISTRO HACCP FIRMABILE (Stampa → Salva PDF)
+           ============================================================ */
+        function openHaccpSheet() { state._hsDays = state._hsDays || 7; buildHaccpRegister(); $('haccp-sheet').classList.add('open'); }
+        function closeHaccpSheet() { $('haccp-sheet').classList.remove('open'); }
+        function printHaccpSheet() { window.print(); }
+        function setHaccpPeriod(n) { state._hsDays = n; document.querySelectorAll('#hs-period button').forEach(b => b.classList.toggle('active', +b.dataset.d === n)); buildHaccpRegister(); }
+
+        function buildHaccpRegister() {
+            const days = state._hsDays || 7;
+            const logo = document.querySelector('.brand-logo');
+            const logoTag = logo ? `<img src="${logo.src}" alt="Maistà">` : '';
+            const today = new Date();
+            const keys = [];
+            for (let i = 0; i < days; i++) { const dt = new Date(today); dt.setDate(dt.getDate() - i); keys.push(dayKey(dt.getTime())); }
+            const from = new Date(today); from.setDate(from.getDate() - (days - 1));
+            const periodLabel = days === 1 ? 'giornata odierna' : `dal ${from.toLocaleDateString('it-IT')} al ${today.toLocaleDateString('it-IT')}`;
+            const FR = frighi(), CL = cleanItems();
+
+            let body = '';
+            keys.forEach(k => {
+                const temps = state.haccp.temps[k] || {};
+                const clean = state.haccp.clean[k] || {};
+                const hasData = Object.keys(temps).length || Object.keys(clean).length;
+                if (days > 1 && !hasData) return;
+                body += `<div class="hs-day"><div class="hs-date">${fmtDayLabel(k)} — ${k.split('-').reverse().join('/')}</div>`;
+                body += `<table class="hreg"><thead><tr><th>Attrezzatura</th><th>Limite</th><th>Letture (ora · °C)</th><th>Esito</th></tr></thead><tbody>`;
+                FR.forEach(eq => {
+                    const log = temps[eq.id] || [];
+                    const anyBad = log.some(r => !tempOk(eq, r.val));
+                    body += `<tr><td class="l">${eq.name}</td><td>≤ ${eq.max} °C</td><td class="l">${log.length ? log.map(r => `${r.time} · ${r.val.toFixed(1)}°`).join('  |  ') : '—'}</td><td>${!log.length ? '<span class="muted">non rilevata</span>' : (anyBad ? '<b class="bad">FUORI LIMITE</b>' : 'conforme')}</td></tr>`;
+                });
+                body += `</tbody></table>`;
+                const doneList = CL.filter(eq => clean[eq.id]);
+                body += `<div class="hs-clean"><b>Sanificazioni:</b> ${doneList.length ? doneList.map(eq => eq.name).join(' · ') : 'nessuna registrata'}</div></div>`;
+            });
+            if (!body) body = '<div class="hs-empty"><div class="empty-state">Nessuna registrazione nel periodo selezionato.</div></div>';
+
+            const ncs = state.haccp.nc.filter(n => keys.includes(n.date));
+            let ncHtml = '';
+            if (ncs.length) {
+                ncHtml = `<div class="hs-nc"><div class="hs-date">Non conformità e azioni correttive</div><table class="hreg"><thead><tr><th>Data · ora</th><th>Rilievo</th><th>Azione correttiva</th><th>Stato</th></tr></thead><tbody>` +
+                    ncs.map(n => `<tr><td>${n.date.split('-').reverse().join('/')} ${n.time}</td><td class="l">${n.what}</td><td class="l">${n.action || '—'}</td><td>${n.resolved ? 'risolta' : '<b class="bad">APERTA</b>'}</td></tr>`).join('') +
+                    `</tbody></table></div>`;
+            }
+
+            const sign = `<div class="hs-sign">
+                <div class="hs-sign-col">
+                    <div class="hs-lbl">Compilato da</div>
+                    <input class="hs-name" id="hs-name" placeholder="Nome e cognome">
+                    <div class="hs-lbl" style="margin-top:12px">Firma (a schermo, col dito)</div>
+                    <canvas id="sign-canvas" width="600" height="150"></canvas>
+                    <button class="hs-clear" onclick="clearSign()">Cancella firma</button>
+                </div>
+                <div class="hs-sign-col">
+                    <div class="hs-lbl">Data</div>
+                    <div class="hs-val">${today.toLocaleDateString('it-IT')}</div>
+                    <div class="hs-lbl" style="margin-top:20px">Firma a penna (per copia cartacea)</div>
+                    <div class="hs-penline"></div>
+                </div>
+            </div>`;
+
+            $('hs-doc').innerHTML = `<div class="as-head">${logoTag}<div><div class="t">Registro HACCP</div><div class="s">Temperature · Sanificazioni · Non conformità</div></div></div>
+                <div class="as-sub">Periodo: ${periodLabel} · Maistà — Pizza &amp; Cucina, Bergamo</div>` +
+                body + ncHtml + sign +
+                `<div class="as-foot">Registro generato dal gestionale interno, da conservare secondo il piano di autocontrollo HACCP dell'attività. La firma attesta l'avvenuto controllo alla data indicata.</div>`;
+
+            const c = $('sign-canvas'); if (c) initSignPad(c);
+        }
+
+        function initSignPad(canvas) {
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#16233d';
+            let drawing = false, last = null;
+            const pos = e => { const r = canvas.getBoundingClientRect(); const t = (e.touches && e.touches[0]) || e; return { x: (t.clientX - r.left) * (canvas.width / r.width), y: (t.clientY - r.top) * (canvas.height / r.height) }; };
+            const start = e => { drawing = true; last = pos(e); e.preventDefault(); };
+            const move = e => { if (!drawing) return; const p = pos(e); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; e.preventDefault(); };
+            const end = () => { drawing = false; };
+            canvas.addEventListener('pointerdown', start);
+            canvas.addEventListener('pointermove', move);
+            window.addEventListener('pointerup', end);
+        }
+        function clearSign() { const c = $('sign-canvas'); if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height); }
+
         init();
+
+
+
     </script>
 </body>
 
