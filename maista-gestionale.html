@@ -6486,6 +6486,9 @@
                     <button class="qbtn minus" onclick="quickMove('${id}','scarico')">− Scarico</button>
                     <button class="qbtn plus" onclick="openCarico('${id}')">＋ Carico</button>
                 </div>
+                <input type="file" id="lbl-photo" accept="image/*" capture="environment" style="display:none" onchange="captureLabel('${id}', event)">
+                <button class="photo-btn" style="margin-bottom:8px" onclick="document.getElementById('lbl-photo').click()">📷 Fotografa etichetta</button>
+                ${p.labelPhotoId ? `<img class="photo-preview" style="display:block;margin-bottom:8px" data-photo="${p.labelPhotoId}" onclick="viewPhoto('${p.labelPhotoId}')" alt="etichetta prodotto">` : ''}
                 <div id="carico-form"></div>
                 <div class="block-label" style="margin-top:18px">Movimenti e lotti</div>
                 ${movesHtml}`;
@@ -6495,7 +6498,7 @@
         }
 
         function hydratePhotos() {
-            document.querySelectorAll('.lot-thumb[data-photo]').forEach(async img => {
+            document.querySelectorAll('[data-photo]').forEach(async img => {
                 if (img._done) return; img._done = true;
                 const data = await PhotoDB.get(img.getAttribute('data-photo'));
                 if (data) img.src = data; else { img.outerHTML = '<span class="lot-thumb empty">📷</span>'; }
@@ -6539,6 +6542,19 @@
             state._caricoPhoto = data;
             const pv = $('ca-preview'); if (pv) { pv.src = data; pv.style.display = 'block'; }
             ev.target.value = '';
+        }
+
+        async function captureLabel(prodId, ev) {
+            const file = ev.target.files && ev.target.files[0]; if (!file) return;
+            toast('Elaboro la foto…', 1500);
+            const data = await compressImage(file, 1024, 0.7);
+            if (!data) { toast('Foto non valida'); return; }
+            const p = findProd(prodId); if (!p) return;
+            if (p.labelPhotoId) PhotoDB.del(p.labelPhotoId);
+            const pid = 'ph' + Date.now(); await PhotoDB.put(pid, data);
+            p.labelPhotoId = pid; p.updatedAt = Date.now();
+            saveStock(); ev.target.value = '';
+            openProductSheet(prodId); toast('Etichetta salvata');
         }
 
         async function saveCarico(id) {
